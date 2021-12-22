@@ -9,6 +9,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>
                         <div class="card-body">

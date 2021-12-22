@@ -1,4 +1,14 @@
-<header class="mb-4">
+@extends('layouts.master')
+
+@section('content')
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8 align-self-start">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <!-- Contact Us header-->
+                            <header class="mb-4">
                                 <!-- Post title-->
                                 <h1 class="fw-bolder mb-1">Contact Us</h1>
                                 <!-- Post meta content-->
@@ -22,3 +32,11 @@
                                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
                                 </form>
                             </section>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div>
+                </div>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+@endsection

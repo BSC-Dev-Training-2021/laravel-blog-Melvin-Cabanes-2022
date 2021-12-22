@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    @include ('/partials.header.navigation')
+@extends('layouts.master')
+
+@section('content')
         <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
@@ -13,9 +13,6 @@
                             <h1 class="fw-bolder mb-1">Coming Soon</h1>
                         </header>
                     </article>
-                </div>
-                <!-- Side widgets-->
-                @include ('/partials.extra.sideContent')
-        <!-- Footer-->
-        <br><br><br><br><br><br><br><br><br><br><br><br>
-        @include ('/partials.footer.footer')
+        </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+@endsection
