@@ -5,16 +5,18 @@ use App\Http\Controllers\pageController;
 use App\Http\Controllers\postController;
 
 
-    Route::get('/', [pageController::class, 'index']);
+    Route::get('/', [postController::class, 'show'])->name('blog.index');
     
-    Route::get('article', [pageController::class, 'article']);
+    Route::get('article', [pageController::class, 'article'])->name('blog.article');
     
-    Route::get('about', [pageController::class, 'about']);
+    Route::get('about', [pageController::class, 'about'])->name('blog.about');
     
-    Route::get('contact', [pageController::class, 'contact']);
+    Route::get('contact', [pageController::class, 'contact'])->name('blog.contact');
     
-    Route::get('post', [pageController::class, 'post']);
+    Route::get('post', [pageController::class, 'post'])->name('blog.post');
     
-    Route::get('messages', [pageController::class, 'messages']);
+    Route::get('messages', [pageController::class, 'messages'])->name('blog.messages');
     
-    Route::post('blog.post',  [postController::class, 'store']);
+    Route::post('blog.post',  [postController::class, 'store'])->name('blog.store');
+
+    

@@ -61,9 +61,10 @@ class postController extends Controller
      * @param  \App\Models\post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show()
     {
-        //
+        $data = post::all();
+        return view('blog.index', ['data' => $data]);
     }
 
     /**
