@@ -1,4 +1,4 @@
-@if(count($errors->all()))
+<!-- @if(count($errors->all()))
                 <div class="row">
                     <div class="col-lg-8 align-self-start">
                         <div class="alert alert-danger">
@@ -11,4 +11,4 @@
                         </div>
                     </div>
                 </div>    
-            @endif
+            @endif -->

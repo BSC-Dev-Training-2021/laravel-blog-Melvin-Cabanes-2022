@@ -13,6 +13,7 @@
                             <h1 class="fw-bolder mb-1">Coming Soon</h1>
                         </header>
                     </article>
-        </div>
+                </div>
+            
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 @endsection

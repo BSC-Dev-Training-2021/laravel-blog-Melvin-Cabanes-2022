@@ -2,10 +2,8 @@
 
 @section('content')
 
-
         <!-- Page content-->
         <div class="container mt-5">
-           @include('partials.errors')
             <div class="row">
                 <div class="col-lg-8 align-self-start">
                     <div class="row">
@@ -20,21 +18,24 @@
                             <!-- Post content-->
                             <section class="mb-5">
 
-                                <form action = "{{ route('blog.post') }}" method = "POST">
+                                <form action = "{{ 'blog.post' }}" method = "POST">
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Title</label>
-                                        <input name = "title" type="text" class="form-control mb-1">
+                                        <input name = "title" type="text" class="form-control mb-1" value ="{{old('title')}}">
+                                        <span style = "color:red">@error( 'title' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Description</label>
                                         <textarea name = "description" class="form-control mb-1" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <span style = "color:red">@error( 'description' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Content</label>
                                         <textarea name = "content" class="form-control mb-1" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        <span style = "color:red">@error( 'content' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">
