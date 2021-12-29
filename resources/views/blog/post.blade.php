@@ -18,7 +18,7 @@
                             <!-- Post content-->
                             <section class="mb-5">
 
-                                <form action = "{{ 'blog.post' }}" method = "POST">
+                                <form action = "{{ 'blog.post' }}" method = "POST" enctype="multipart/form-data">
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Title</label>
@@ -36,6 +36,12 @@
                                         <label for="exampleFormControlTextarea1" class="mb-1">Content</label>
                                         <textarea name = "content" class="form-control mb-1" id="exampleFormControlTextarea1" rows="5"></textarea>
                                         <span style = "color:red">@error( 'content' ){{ $message }} @enderror</span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">File type should be: JPEG, JPG, and PNG.</label>
+                                        <input name = "image" type="file" class="form-control-file">
+                                        <span style = "color:red">@error( 'image' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">

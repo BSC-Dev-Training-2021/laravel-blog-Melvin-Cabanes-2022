@@ -35,25 +35,41 @@ class postController extends Controller
     public function store(Request $request, \Illuminate\Validation\Factory $validator)
     {
         $val = $validator->make($request->all(), [
-            'title'=> 'required | min:10 | string',
-            'description'=> 'required | min:10 | string',
-            'content'=> 'required | min:10 | string'
-        ]);
-        if($val->fails()) {
-            return redirect()->back()->withErrors($val);
-        }
+                'title'=> 'required | min:10 | string',
+                'description'=> 'required | min:10 | string',
+                'content'=> 'required | min:10 | string',
+                'image' => 'required | mimes:jpg,bmp,png,jpeg'
+            ]);
+            
+            if($val->fails()) {
+                return redirect()->back()->withErrors($val);
+            }
+            
+            $post = new post();
+            
+            $post -> title = $request->input('title');
+            $post -> description = $request->input('description');
+            $post -> content = $request->input('content');
+            
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalName();
+                $filename =  $extension;
+                $file->move(public_path(''), $filename);
+                $post->image = $filename;
+            } else {
+                return "Error pre!";
+            }
+            
+                $post->save();
+            
+                
+            // return redirect('/')->with('success', 'New blog created successfully!');
+            return redirect('/')->with('success', 'New blog Created: '.  $request->input('title') );
+            return redirect('/')->with('fail', 'There is an error!');
+            }
 
-        $post = new post();
-        $post -> title = $request->input('title');
-        $post -> description = $request->input('description');
-        $post -> content = $request->input('content');
-        $post->save();
-
-        // return redirect('/')->with('success', 'New blog created successfully!');
-        return redirect('/')->with('success', 'New blog Created: '.  $request->input('title') );
-        return redirect('/')->with('fail', 'There is an error!');
     
-    }
 
     /**
      * Display the specified resource.
@@ -63,7 +79,7 @@ class postController extends Controller
      */
     public function show()
     {
-        $data = post::all();
+        $data = post::orderBy('created_at', 'desc')->get();
         return view('blog.index', ['data' => $data]);
     }
 
