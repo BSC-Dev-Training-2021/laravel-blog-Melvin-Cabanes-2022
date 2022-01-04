@@ -11,7 +11,7 @@ class pageController extends Controller
     public function index() {
         return view('blog.index');
     }
-    public function article() {
+    public function article() {        
         return view('blog.article');
     }
     public function about() {
@@ -21,6 +21,7 @@ class pageController extends Controller
         return view('blog.contact');
     }
     public function post() {
+        
         return view('blog.post');
     }
     public function messages() {

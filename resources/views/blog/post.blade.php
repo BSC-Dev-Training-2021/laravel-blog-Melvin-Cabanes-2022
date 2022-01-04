@@ -22,19 +22,19 @@
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Title</label>
-                                        <input name = "title" type="text" class="form-control mb-1" value ="{{old('title')}}">
+                                        <input name = "title" type="text" class="form-control mb-1" value ="{{ old('title') }}">
                                         <span style = "color:red">@error( 'title' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Description</label>
-                                        <textarea name = "description" class="form-control mb-1" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea name = "description" class="form-control mb-1"  rows="3" >{{old('description')}}</textarea>
                                         <span style = "color:red">@error( 'description' ){{ $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1" class="mb-1">Content</label>
-                                        <textarea name = "content" class="form-control mb-1" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        <textarea name = "content" class="form-control mb-1" rows="5">{{old('content')}}</textarea>
                                         <span style = "color:red">@error( 'content' ){{ $message }} @enderror</span>
                                     </div>
 
@@ -47,14 +47,18 @@
                                     <div class="form-group">
                                         <label class="mb-1 mt-3">Categories</label>
                                         <div class="row">
+                                        @foreach($data as $value)
                                             <div class="col-lg-6">
                                                 <div class="form-check">
                                                     <input name = "categories" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                      Default checkbox
+                                                      {{ $value->name }}
                                                     </label>
+                                                </div>
                                             </div>
-                                        </div>
+                                            @endforeach
+                                            
+                                            <span style = "color:red">@error( 'categories' ){{ $message }} @enderror</span>
                                     </div>
                                     
                                     {{ csrf_field() }}

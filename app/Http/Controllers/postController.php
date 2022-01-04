@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\post;
+use App\Models\blogpost_category;
 use Illuminate\Http\Request;
+
 
 class postController extends Controller
 {
@@ -38,30 +40,34 @@ class postController extends Controller
                 'title'=> 'required | min:10 | string',
                 'description'=> 'required | min:10 | string',
                 'content'=> 'required | min:10 | string',
-                'image' => 'required | mimes:jpg,bmp,png,jpeg'
+                'image' => 'required | mimes:jpg,bmp,png,jpeg',
+                
+                
             ]);
             
             if($val->fails()) {
-                return redirect()->back()->withErrors($val);
+                return redirect()->back()->withErrors($val)->withInput();
             }
             
             $post = new post();
+            $blogpost_category = new blogpost_category();
             
             $post -> title = $request->input('title');
             $post -> description = $request->input('description');
             $post -> content = $request->input('content');
+            // $blogpost_category -> category_id = $request->input('categories');
             
             if($request->hasFile('image')){
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalName();
                 $filename =  $extension;
-                $file->move(public_path(''), $filename);
+                $file->move(public_path('images'), $filename);
                 $post->image = $filename;
-            } else {
-                return "Error pre!";
-            }
-            
+            } 
+                // return $post;
+                // return $blogpost_category;
                 $post->save();
+                // $blogpost_category->save(); 
             
                 
             // return redirect('/')->with('success', 'New blog created successfully!');
@@ -81,6 +87,12 @@ class postController extends Controller
     {
         $data = post::orderBy('created_at', 'desc')->get();
         return view('blog.index', ['data' => $data]);
+    }
+
+    public function showArticle($id) 
+    {
+        $data = post::find($id);
+        return view('blog.article', ['data' => $data]);
     }
 
     /**
