@@ -47,17 +47,17 @@
                                     <div class="form-group">
                                         <label class="mb-1 mt-3">Categories</label>
                                         <div class="row">
+
                                         @foreach($data as $value)
                                             <div class="col-lg-6">
                                                 <div class="form-check">
-                                                    <input name = "categories" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                    <input name = "categories[]" class="form-check-input" type="checkbox" value="{{ $value->id }}" id="defaultCheck1">
                                                     <label class="form-check-label" for="defaultCheck1">
                                                       {{ $value->name }}
                                                     </label>
                                                 </div>
                                             </div>
                                             @endforeach
-                                            
                                             <span style = "color:red">@error( 'categories' ){{ $message }} @enderror</span>
                                     </div>
                                     

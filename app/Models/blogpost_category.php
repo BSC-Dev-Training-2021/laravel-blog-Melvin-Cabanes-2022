@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class blogpost_category extends Model
 {
-    use HasFactory;
+    protected $fillable = ['blogpost_id', 'category_id'];
 }

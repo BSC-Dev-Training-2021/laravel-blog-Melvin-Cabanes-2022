@@ -14,11 +14,11 @@ class CreateBlogpostCategoriesTable extends Migration
     public function up()
     {
         Schema::create('blogpost_categories', function (Blueprint $table) {
-                $table->increments('id');
-                $table->foreignId('blogpost_id')->references('id')->on('posts');
-                $table->foreignId('category_id')->references('id')->on('category_types');
-                $table->timestamps();
-            });
+            $table->id();
+            $table->integer('blogpost_id')->unassigned()->nullable();
+            $table->integer('category_id');
+            $table->timestamps();
+        });
     }
 
     /**

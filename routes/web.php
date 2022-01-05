@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\blogpost_categoryController;
 
 
     Route::get('/', [postController::class, 'show'])->name('blog.index');
@@ -19,5 +20,8 @@ use App\Http\Controllers\categoryController;
     Route::get('messages', [pageController::class, 'messages'])->name('blog.messages');
     
     Route::post('blog.post',  [postController::class, 'store'])->name('blog.store');
+
+    // Route::post('blog.post',  [blogpost_categoryController::class, 'store'])->name('blog.store');
+
 
     

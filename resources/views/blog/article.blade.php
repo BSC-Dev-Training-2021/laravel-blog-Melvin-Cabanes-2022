@@ -14,8 +14,9 @@
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on {{ $data->created_at->format('M, d Y H:i:s A');}}</div>
                             <!-- Post categories-->
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                        
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#">Web Developer</a>
+                        
                         </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src=" /images/{{ $data->image }}" alt="..." /></figure>
