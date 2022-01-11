@@ -14,20 +14,13 @@
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
+                            @foreach($cat_types as $value)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Web Design</a></li>
-                                        <li><a href="#!">HTML</a></li>
-                                        <li><a href="#!">Freebies</a></li>
+                                        <li><a href="#">{{ $value->name }}</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">JavaScript</a></li>
-                                        <li><a href="#!">CSS</a></li>
-                                        <li><a href="#!">Tutorials</a></li>
-                                    </ul>
-                                </div>
+                            @endforeach
                             </div>
                         </div>
                     </div>

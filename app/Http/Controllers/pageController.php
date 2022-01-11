@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class pageController extends Controller
 {
     public function index() {
+
         return view('blog.index');
     }
     public function article() {        
@@ -22,7 +23,7 @@ class pageController extends Controller
     }
     public function post() {
         
-        return view('blog.post');
+        return view('blog.post' , []);
     }
     public function messages() {
         return view('blog.messages');

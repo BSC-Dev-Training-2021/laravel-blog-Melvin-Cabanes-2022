@@ -48,7 +48,7 @@
                                         <label class="mb-1 mt-3">Categories</label>
                                         <div class="row">
 
-                                        @foreach($data as $value)
+                                        @foreach($categoryData as $value)
                                             <div class="col-lg-6">
                                                 <div class="form-check">
                                                     <input name = "categories[]" class="form-check-input" type="checkbox" value="{{ $value->id }}" id="defaultCheck1">

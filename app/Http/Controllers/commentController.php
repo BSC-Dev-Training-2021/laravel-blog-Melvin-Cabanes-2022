@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\category_type;
-use Illuminate\Support\Facades\View;
+use App\Models\blogpost;
+use App\Models\blogpost_comment;
 
-
-class categoryController extends Controller
+class commentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,8 +35,14 @@ class categoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  
+        $blogpostComm = new blogpost_comment([
+            'blogpost_id' => $request->input('hidden'),
+            'comment' => $request->input('comment')
+        ]);
+        $blogpostComm->save();
+
+       return back();
     }
 
     /**
@@ -48,12 +51,13 @@ class categoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function showComments()
     {
-        $categoryData = category_type::all(); 
-        return view('blog.post', ['categoryData'=>$categoryData]);
+        $postComment = blogpost_comment::orderBy('created_at', 'desc')->get();
+        return view('blog.index', ['postComment' => $postComment]);
     }
-    
+
+
     /**
      * Show the form for editing the specified resource.
      *

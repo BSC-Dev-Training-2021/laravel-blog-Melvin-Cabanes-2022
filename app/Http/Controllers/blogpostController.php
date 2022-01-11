@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
-use App\Models\post;
-// use App\Models\blogpost_category;
-// use App\Http\Controllers\blogpost_categoryController;
+use App\Models\blogpost;
+use App\Models\blogpost_category;
+use App\Models\blogpost_comment;
+use App\Models\category_type;
 use Illuminate\Http\Request;
+use App\Http\Controllers\commentController;
 
 
-class postController extends Controller
+class blogpostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -48,67 +51,66 @@ class postController extends Controller
             return redirect()->back()->withErrors($val)->withInput();
         }
         
-        $post = new post();
-
+        $blogpost = new blogpost();
         $blogpost_category = new blogpost_categoryController();
 
-        
-        $post -> title = $request->input('title');
-        $post -> description = $request->input('description');
-        $post -> content = $request->input('content');
-        // $blogpost_category -> category_id = $request->input('categories');
+        $blogpost -> title = $request->input('title');
+        $blogpost -> description = $request->input('description');
+        $blogpost -> content = $request->input('content');
         
         if($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalName();
             $filename =  $extension;
             $file->move(public_path('images'), $filename);
-            $post->image = $filename;
+            $blogpost->image = $filename;
         } 
-        // return $post;
-        // dd($blogpost_category);
-        $post->save(); 
-        $blogpost_category->store($request , $post->id);
+        $blogpost->save(); 
+        $blogpost_category->store($request , $blogpost->id);
         
-        // foreach($request->input('categories') as $value){
-        //     $blogpost_category -> category_id = $value;
-        //     $blogpost_category->save();
-        //     }
-
-            
-                
             // return redirect('/')->with('success', 'New blog created successfully!');
             return redirect('/')->with('success', 'New blog Created: '.  $request->input('title') );
             return redirect('/')->with('fail', 'There is an error!');
             }
 
-    
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\blogpost  $post
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        $data = post::orderBy('created_at', 'desc')->get();
-        return view('blog.index', ['data' => $data]);
+        $postdata = blogpost::orderBy('created_at', 'desc')->get();
+        return view('blog.index', ['postdata' => $postdata]);
     }
 
-    public function showArticle($id) 
+    public function showArticle(blogpost $articleData) 
     {
-        $data = post::find($id);
-        return view('blog.article', ['data' => $data]);
+       
+        $showCategory = DB::table('blogpost_categories')
+        ->where('blogpost_categories.blogpost_id', '=', $articleData->id)
+        ->join('category_types', 'category_types.id', '=', 'blogpost_categories.category_type_id')
+        ->get();
+
+        $blogpost_comment = new blogpost_comment();
+        $commentController = new commentController();
+
+        $getComments = $commentController->showComments();
+        
+        // return $showCategory;
+        // $data = blogpost::find($id);
+        return view('blog.article', ['articleData' => $articleData], ['showCategory'=>$showCategory], ['getComments'=> $getComments]);
     }
+   
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\blogpost  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(blogpost $blogpost)
     {
         //
     }
@@ -117,10 +119,10 @@ class postController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\blogpost  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, blogpost $blogpost)
     {
         //
     }
@@ -128,10 +130,10 @@ class postController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\blogpost  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy(blogpost $blogpost)
     {
         //
     }

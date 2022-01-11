@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\DB;
 use App\Models\blogpost_category;
 use Illuminate\Http\Request;
 
@@ -36,13 +36,11 @@ class blogpost_categoryController extends Controller
      */
     public function store($request, $id)
     {
-       
+        $data = $request->input('categories');
 
-        // $blogpost_category -> category_id = $request->input('categories');
-
-        foreach($request->input('categories') as $value){
+        foreach( $data as $value ){
             $blogpost_category = new blogpost_category([
-                'category_id' => $value,
+                'category_type_id' => $value,
                 'blogpost_id' => $id
             ]);
             $blogpost_category->save();
@@ -55,11 +53,7 @@ class blogpost_categoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
