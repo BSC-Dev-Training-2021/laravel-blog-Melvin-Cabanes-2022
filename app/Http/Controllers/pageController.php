@@ -23,8 +23,14 @@ class pageController extends Controller
     }
     public function post() {
         
-        return view('blog.post' , []);
+        return view('blog.post');
     }
+
+    public function category() {
+        
+        return view('blog.category');
+    }
+
     public function messages() {
         return view('blog.messages');
     }

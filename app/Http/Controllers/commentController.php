@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\blogpost;
 use App\Models\blogpost_comment;
+use App\Http\Controllers\blogpostController;
 
 class commentController extends Controller
 {
@@ -53,8 +55,15 @@ class commentController extends Controller
      */
     public function showComments()
     {
+        $blopostCon = new blogpostController;
+
+        // $postComment = DB::table('blogposts')
+        // ->join('blogpost_comments', 'blogpost_comments.blogpost_id', '=', $articleData->id)
+        // ->where('blogposts.id', '=', 'blogpost_comments.blogpost_id')
+        // ->get();
+
         $postComment = blogpost_comment::orderBy('created_at', 'desc')->get();
-        return view('blog.index', ['postComment' => $postComment]);
+        return $postComment;
     }
 
 

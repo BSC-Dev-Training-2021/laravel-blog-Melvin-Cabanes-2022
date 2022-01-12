@@ -17,7 +17,9 @@
                             @foreach($cat_types as $value)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#">{{ $value->name }}</a></li>
+                                        <li><a href="?id={{ $value->id }}" class = " text-decoration-none">{{ $value->name }} &nbsp 
+                                            <a href = "category/delete/{{ $value->id }}" class = "btn-danger btn-sm py-0 my-1 text-decoration-none">x</a></a>
+                                        
                                     </ul>
                                 </div>
                             @endforeach

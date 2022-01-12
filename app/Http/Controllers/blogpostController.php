@@ -97,10 +97,9 @@ class blogpostController extends Controller
         $commentController = new commentController();
 
         $getComments = $commentController->showComments();
+        // return $getComments;
         
-        // return $showCategory;
-        // $data = blogpost::find($id);
-        return view('blog.article', ['articleData' => $articleData], ['showCategory'=>$showCategory], ['getComments'=> $getComments]);
+        return view('blog.article', ['articleData' => $articleData, 'showCategory'=>$showCategory, 'getComments'=> $getComments]);
     }
    
 

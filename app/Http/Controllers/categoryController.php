@@ -39,7 +39,12 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoryModel = new category_type();
+
+        $categoryModel -> name = $request->input('insertCategory');
+
+        $categoryModel->save();
+        return back()->with("success", "New Category inserted Successfully");
     }
 
     /**
@@ -83,8 +88,10 @@ class categoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $data = category_type::find($id);
+        $deleted = $data->delete();
+        return back();
     }
 }

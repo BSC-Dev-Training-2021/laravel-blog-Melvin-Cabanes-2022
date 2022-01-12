@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $pages = ['blog.post', 'blog.index', 'blog.article', 'blog.about', 'blog.contact', 'blog.messages'];
+        $pages = ['blog.post', 'blog.index', 'blog.article', 'blog.about', 'blog.contact', 'blog.messages', 'blog.category'];
         \View::composer($pages, function ($view) {
             $cat_types = DB::table('category_types')->get();
             $view->with(['cat_types'=>$cat_types]);

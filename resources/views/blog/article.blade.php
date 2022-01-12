@@ -32,7 +32,7 @@
                         <div class="card bg-light">
                             <div class="card-body">
                                 <!-- Comment form-->
-
+                            
                                 <form class="mb-4" action = " {{ route('blog.article') }} " method = "POST">
                                     <div>
                                         <textarea name = "comment" class="form-control mb-2" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
@@ -45,13 +45,13 @@
                                 </form>
 
                                 <!-- Comment with nested comments-->
-                            
+                            @foreach($getComments as $value)
                                 <div class="d-flex mb-4">
                                     <!-- Parent comment--> 
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
                                         <div class="fw-bold">Commenter Name</div>
-                                        
+                                        {{$value->comment}}
                                         <!-- Child comment 1-->
                                         <div class="d-flex mt-4">
                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+                            @endforeach
                             </div>
                         </div>
                     </section>
